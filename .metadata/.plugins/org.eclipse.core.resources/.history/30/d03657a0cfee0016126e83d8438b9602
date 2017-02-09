@@ -1,0 +1,80 @@
+package gameCenter;
+
+public class Jogo {
+	private String nome;
+	private double preco;
+	private int highscore;
+	private int jogadas;
+	private int zeradas;
+	
+	public Jogo (String nome, double preco) throws Exception{
+		this.nome = nome;
+		this.preco = preco;
+		this.highscore = 0;
+		this.jogadas = 0;
+		this.zeradas = 0;
+		if (nome == null || nome.equals("")){
+			throw new Exception("Nome invalido");
+		}
+	}
+	
+	public void registraJogada(int score, boolean zerou){
+		jogadas++;
+		if (score > highscore) {
+			highscore = score;
+		}
+		if (zerou == true) {
+			zeradas++;
+		}
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
+
+	public int getHighscore() {
+		return highscore;
+	}
+
+	public int getJogadas() {
+		return jogadas;
+	}
+
+	public int getZeradas() {
+		return zeradas;
+	}
+
+	@Override
+	public String toString(){
+		return this.nome + " " + this.preco + " " ;
+	
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj){
+		if (obj instanceof Jogo) {
+			if(((Jogo) obj).getNome().equals(this.getNome())){
+				return true;
+			}
+			
+		}
+		return false;
+	}
+	
+	
+}

@@ -1,0 +1,73 @@
+package gameCenter;
+
+public class Jogo {
+	private String nome;
+	private double preco;
+	private int highscore;
+	private int jogadas;
+	private int zeradas;
+	private String tipo;
+	
+	public Jogo (String nome, double preco, String tipo){
+		this.nome = nome;
+		this.preco = preco;
+		this.tipo = tipo;
+		this.highscore = 0;
+		this.jogadas = 0;
+		this.zeradas = 0;
+	}
+	
+	public void registraJogada(int score, boolean zerou){
+		jogadas++;
+		if (score > highscore) {
+			highscore = score;
+		}
+		if (zerou == true) {
+			zeradas++;
+		}
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
+
+	public int getHighscore() {
+		return highscore;
+	}
+
+	public int getJogadas() {
+		return jogadas;
+	}
+
+	public int getZeradas() {
+		return zeradas;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	@Override
+	public String toString(){
+		return this.nome + " " + this.preco + " " + this.tipo;
+	}
+	
+	@Override
+	public boolean equals(Object obj){
+		if (obj instanceof Jogo) {
+			if(((Jogo) obj).getNome().equals(this.getNome())){
+				return true;
+			}
+			
+		}
+		return false;
+	}
+}

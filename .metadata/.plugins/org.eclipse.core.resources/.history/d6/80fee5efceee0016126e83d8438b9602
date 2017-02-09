@@ -1,0 +1,10 @@
+package gameCenter;
+
+public class Plataforma extends Jogo{
+
+	public Plataforma(String nome, double preco, String tipo) throws Exception {
+		super(nome, preco, tipo);
+		// TODO Auto-generated constructor stub
+	}
+
+}

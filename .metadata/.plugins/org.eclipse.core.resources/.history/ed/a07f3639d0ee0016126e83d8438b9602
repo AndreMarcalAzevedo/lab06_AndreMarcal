@@ -1,0 +1,13 @@
+package gameCenter;
+
+public class Luta extends Jogo{
+
+	public Luta(String nome, double preco) throws Exception {
+		super(nome, preco);
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString(){
+		return nome + " " + preco + " " + "Luta";
+	}
+}

@@ -1,0 +1,41 @@
+package gameCenterTestes;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class JogoTeste {
+	private Jogo rpg;
+	
+	@Before
+	public void CriaJogo(){
+		
+	}
+
+	@Test
+	public void testJogo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testRegistraJogada() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetPreco() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testToString() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testEqualsObject() {
+		fail("Not yet implemented");
+	}
+
+}

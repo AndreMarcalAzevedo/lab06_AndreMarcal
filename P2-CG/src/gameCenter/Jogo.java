@@ -1,16 +1,30 @@
 package gameCenter;
 
 public class Jogo {
-	private String nome;
-	private double preco;
-	private int highscore;
-	private int jogadas;
-	private int zeradas;
-	private String tipo;
+	protected String nome;
+	protected double preco;
+	protected int highscore;
+	protected int jogadas;
+	protected int zeradas;
+	
+	public Jogo (String nome, double preco) throws Exception{
+		this.nome = nome;
+		this.preco = preco;
+		this.highscore = 0;
+		this.jogadas = 0;
+		this.zeradas = 0;
+		if (nome == null || nome.equals("")){
+			throw new Exception("Nome invalido");
+		}
+	}
 	
 	public void registraJogada(int score, boolean zerou){
+		jogadas++;
 		if (score > highscore) {
 			highscore = score;
+		}
+		if (zerou == true) {
+			zeradas++;
 		}
 	}
 
@@ -18,47 +32,52 @@ public class Jogo {
 		return nome;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public double getPreco() {
 		return preco;
 	}
 
-	public void setPreco(double preco) {
+	public void setPreco(double preco) throws Exception{
 		this.preco = preco;
+		if (preco < 0) {
+			throw new Exception("Preço invalido");
+		}
 	}
 
 	public int getHighscore() {
 		return highscore;
 	}
 
-	public void setHighscore(int highscore) {
-		this.highscore = highscore;
-	}
-
 	public int getJogadas() {
 		return jogadas;
-	}
-
-	public void setJogadas(int jogadas) {
-		this.jogadas = jogadas;
 	}
 
 	public int getZeradas() {
 		return zeradas;
 	}
 
-	public void setZeradas(int zeradas) {
-		this.zeradas = zeradas;
+	@Override
+	public String toString(){
+		return this.nome + " " + this.preco + " " ;
+	
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
 	}
 
-	public String getTipo() {
-		return tipo;
+	@Override
+	public boolean equals(Object obj){
+		if (obj instanceof Jogo) {
+			if(((Jogo) obj).getNome().equals(this.getNome())){
+				return true;
+			}
+			
+		}
+		return false;
 	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
+	
+	
 }

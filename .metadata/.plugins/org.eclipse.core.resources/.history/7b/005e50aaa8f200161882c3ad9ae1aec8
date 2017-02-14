@@ -1,0 +1,53 @@
+package gameCenterTestes;
+
+import static org.junit.Assert.*;
+import gameCenter.Jogo;
+import gameCenter.Luta;
+import gameCenter.Plataforma;
+import gameCenter.RPG;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class JogoTeste {	
+	private Jogo jogo1;
+	private Jogo jogo2;
+	private Jogo jogo3;
+	
+	@Before
+	public void criaJogo() throws Exception {
+		jogo1 = new RPG ("DarkSiders", 50);
+		jogo2 = new Plataforma ("Mario", 10);
+		jogo3 = new Luta ("KoF", 25);
+	}
+		
+	@Test
+	public void testJogo() {
+		assertEquals(50.00, jogo1.getPreco(),0.05);
+		assertEquals(10.00, jogo2.getPreco(),0.05);
+		assertEquals(25.00, jogo3.getPreco(),0.05);
+	}
+
+	@Test
+	public void testRegistraJogada() {
+		assertEquals(0, jogo1.getJogadas());
+		assertEquals(0, jogo1.getHighscore());
+		assertEquals(0, jogo1.getZeradas());
+	}
+
+	@Test
+	public void testSetPreco() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testToString() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testEqualsObject() {
+		fail("Not yet implemented");
+	}
+
+}

@@ -1,22 +1,30 @@
 package gameCenter;
 
+import java.util.Set;
+
 public class Jogo {
 	protected String nome;
 	protected double preco;
 	protected int highscore;
 	protected int jogadas;
 	protected int zeradas;
+	protected Set<EstilosJogo> estilos;
 	
-	public Jogo (String nome, double preco) throws Exception{
+	public Jogo (String nome, double preco, Set<EstilosJogo> estilos) throws Exception{
 		this.nome = nome;
 		this.preco = preco;
 		this.highscore = 0;
 		this.jogadas = 0;
 		this.zeradas = 0;
+		this.estilos = estilos;
 		if (nome == null || nome.equals("")){
-			throw new Exception("Nome invalido");
+			throw new Exception("Nome inválido");
+		}
+		if (preco < 0) {
+			throw new Exception("Preço inválido");
 		}
 	}
+	
 	
 	public void registraJogada(int score, boolean zerou){
 		jogadas++;
@@ -37,10 +45,10 @@ public class Jogo {
 	}
 
 	public void setPreco(double preco) throws Exception{
-		this.preco = preco;
 		if (preco < 0) {
 			throw new Exception("Preço invalido");
 		}
+		this.preco = preco;
 	}
 
 	public int getHighscore() {

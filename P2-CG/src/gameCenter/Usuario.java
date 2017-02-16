@@ -1,12 +1,39 @@
 package gameCenter;
 
+import java.util.HashSet;
+
 public class Usuario {
-	private String nome;
-	private String nomeLogin;
-	private double dinheiro;
+	protected String nome;
+	protected String nomeLogin;
+	protected double dinheiro;
+	protected HashSet<Jogo> lista;
 	
-	public void adicionarDinheiro(int money){
+	public Usuario (String nome, String nomeLogin) throws Exception{
+		if (nome == null || nome.equals("")) {
+			throw new Exception("Nome inválido");
+		}
+		if (nomeLogin == null || nomeLogin.equals("")) {
+			throw new Exception("Nome de Login inválido");
+		}
+		this.nome = nome;
+		this.nomeLogin = nomeLogin;
+		this.dinheiro = 0;
+		this.lista = new HashSet<Jogo>();
+	}
+
+	public void adicionarDinheiro(double money) throws Exception{
+		if (money <= 0) {
+			throw new Exception("Valor inválido");
+		}
 		dinheiro += money;
+	}
+	
+	public void comprarJogo(Jogo jogo) throws Exception{
+		if (jogo.getPreco() > dinheiro) {
+			throw new Exception("Jogo muito caro");
+		}
+		dinheiro -= jogo.getPreco();
+		lista.add(jogo);
 	}
 
 	public String getNome() {
@@ -20,4 +47,31 @@ public class Usuario {
 	public double getDinheiro() {
 		return dinheiro;
 	}
+	
+	public HashSet<Jogo> getLista() {
+		return lista;
+	}
+	
+	@Override
+	public String toString() {
+		return nome + " " + nomeLogin;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Usuario) {
+			if (((Usuario) obj).getNomeLogin().equals(this.getNomeLogin())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nomeLogin == null) ? 0 : nomeLogin.hashCode());
+		return result;
+	}		
 }

@@ -65,7 +65,7 @@ public class Jogo {
 
 	@Override
 	public String toString(){
-		return this.nome + " " + this.preco + " " ;
+		return nome + " " + preco + " ";
 	
 	}
 	@Override

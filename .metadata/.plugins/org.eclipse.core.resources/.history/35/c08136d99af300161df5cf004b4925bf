@@ -1,0 +1,37 @@
+package gameCenter;
+
+import java.util.HashSet;
+
+public class Usuario {
+	private String nome;
+	private String nomeLogin;
+	private double dinheiro;
+	HashSet<Jogo> lista;
+	
+	public Usuario (String nome, String nomeLogin){
+		this.nome = nome;
+		this.nomeLogin = nomeLogin;
+		this.dinheiro = 0;
+		this.lista = new HashSet<Jogo>();
+	}
+	
+	public void adicionarDinheiro(int money){
+		dinheiro += money;
+	}
+	
+	public void comprarJogo(Jogo jogo){
+		
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public String getNomeLogin() {
+		return nomeLogin;
+	}
+
+	public double getDinheiro() {
+		return dinheiro;
+	}
+}

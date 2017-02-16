@@ -1,5 +1,5 @@
 package gameCenter;
 
 public enum EstilosJogo {
-	Online,Offline,Multiplayer,Cooperativo,Competitivo
+	ONLINE,OFFLINE,MULTIPLAYER,COOPERATIVO,COMPETITIVO;
 }

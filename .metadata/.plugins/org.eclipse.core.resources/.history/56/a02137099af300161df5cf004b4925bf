@@ -1,0 +1,5 @@
+package gameCenter;
+
+public class Noob extends Usuario{
+	private int desconto = 10;
+}

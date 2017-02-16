@@ -24,11 +24,11 @@ public class JogoTeste {
 	@Before
 	public void criaJogo() throws Exception {
 		Set<EstilosJogo> estilos = new HashSet<EstilosJogo>();
-		estilos.add(EstilosJogo.Offline)
-		jogo1 = new RPG ("DarkSiders", 50);
-		jogo2 = new Plataforma ("Mario", 10);
-		jogo3 = new Luta ("KoF", 25);
-		jogo4 = new RPG("DarkSiders", 75)
+		estilos.add(EstilosJogo.OFFLINE);
+		jogo1 = new RPG ("DarkSiders", 50, estilos);
+		jogo2 = new Plataforma ("Mario", 10, estilos);
+		jogo3 = new Luta ("KoF", 25, estilos);
+		jogo4 = new RPG("DarkSiders", 75, estilos);
 	}
 		
 	@Test

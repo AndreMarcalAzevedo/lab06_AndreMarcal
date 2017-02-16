@@ -1,0 +1,23 @@
+package gameCenter;
+
+public class Veterano extends Usuario{
+	
+	public Veterano(String nome, String nomeLogin) throws Exception{
+		super(nome, nomeLogin);
+	}
+	
+	@Override
+	public String toString() {
+		return "Veterano " + nome + " " + nomeLogin;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Veterano) {
+			if (((Veterano) obj).getNomeLogin().equals(this.getNomeLogin())) {
+				return true;
+			}
+		}
+		return false;
+	}
+}

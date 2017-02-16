@@ -1,0 +1,5 @@
+package gameCenter;
+
+public class Veterano extends Usuario{
+	private int desconto = 20;
+}

@@ -1,0 +1,8 @@
+package gameCenter;
+
+public class Noob extends Usuario{
+	
+	public Noob(String nome, String nomeLogin) throws Exception{
+		super(nome, nomeLogin);
+	}
+}

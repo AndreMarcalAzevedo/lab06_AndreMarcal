@@ -2,33 +2,109 @@ package gameCenterTestes;
 
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.Before;
 import org.junit.Test;
 
-public class UsuarioTeste {
+import gameCenter.EstilosJogo;
+import gameCenter.Jogo;
+import gameCenter.Luta;
+import gameCenter.Noob;
+import gameCenter.Plataforma;
+import gameCenter.RPG;
+import gameCenter.Veterano;
 
+public class UsuarioTeste {
+	
+	private Noob usuario1;
+	private Veterano usuario2;
+	private Veterano usuario3;
+	private RPG jogo1;
+	private Plataforma jogo2;
+	private Luta jogo3;
+	private Set<EstilosJogo> estilos;
+	private HashSet<Jogo> lista;
+	
+	@Before
+	public void criaUsuario() throws Exception{
+		usuario1 = new Noob ("Edu", "BRKS");
+		usuario2 = new Veterano("Paulo", "TheLegend27");
+		usuario3 = new Veterano ("Paulao", "TheLegend27");
+		jogo1 = new RPG("Bastion", 20, estilos);
+		jogo2 = new Plataforma("Mario", 10, estilos);
+		jogo3 = new Luta("StreetFighter", 50, estilos);
+	}
+	
 	@Test
 	public void testUsuario() {
-		fail("Not yet implemented");
+		assertEquals("Edu", usuario1.getNome());
+		assertEquals("BRKS", usuario1.getNomeLogin());
+		assertEquals("Paulo", usuario2.getNome());
+		assertEquals("TheLegend27", usuario2.getNomeLogin());
 	}
 
 	@Test
 	public void testAdicionarDinheiro() {
-		fail("Not yet implemented");
+		assertEquals(0, usuario1.getDinheiro(), 0.005);
+		try {
+			usuario1.adicionarDinheiro(10.50);
+		} catch (Exception e) {
+			
+		}
+		assertEquals(10.50, usuario1.getDinheiro(), 0.005);
 	}
 
 	@Test
-	public void testComprarJogo() {
-		fail("Not yet implemented");
+	public void testComprarJogo() throws Exception {
+		usuario1.adicionarDinheiro(20);
+		usuario2.adicionarDinheiro(20);
+		lista = new HashSet<Jogo>();
+		assertEquals(lista, usuario1.getLista());
+		usuario1.comprarJogo(jogo1);
+		lista.add(jogo1);
+		assertEquals(lista, usuario1.getLista());
+		assertEquals(2, usuario1.getDinheiro(), 0.005);
+		assertEquals(200, usuario1.getX2p());
+		lista = new HashSet<Jogo>();
+		assertEquals(lista, usuario2.getLista());
+		usuario2.comprarJogo(jogo1);
+		lista.add(jogo1);
+		assertEquals(lista, usuario2.getLista());
+		assertEquals(4, usuario2.getDinheiro(), 0.005);
+		assertEquals(1300, usuario2.getX2p());
+	}
+	
+	@Test
+	public void testRegistraJogada() throws Exception {
+		usuario1.adicionarDinheiro(80);
+		usuario1.comprarJogo(jogo1);
+		usuario1.comprarJogo(jogo2);
+		usuario1.comprarJogo(jogo3);
+		usuario1.registraJogada("Bastion", 100, true);
+		assertEquals(810, usuario1.getX2p());
+		usuario1.registraJogada("Mario", 0, true);
+		assertEquals(830, usuario1.getX2p());
+		usuario1.registraJogada("Mario", 100000000, false);
+		assertEquals(830, usuario1.getX2p());
+		usuario1.registraJogada("StreetFighter", 20000, true);
+		assertEquals(850, usuario1.getX2p());
+		usuario1.registraJogada("StreetFighter", 10000, true);
+		assertEquals(850, usuario1.getX2p());
+		usuario1.registraJogada("StreetFighter", 40000, true);
+		assertEquals(890, usuario1.getX2p());
 	}
 
 	@Test
 	public void testToString() {
-		fail("Not yet implemented");
+		assertEquals("Noob Edu BRKS", usuario1.toString());
+		assertEquals("Veterano Paulo TheLegend27", usuario2.toString());
 	}
 
 	@Test
 	public void testEqualsObject() {
-		fail("Not yet implemented");
+		assertTrue(usuario2.equals(usuario3));
+		assertFalse(usuario1.equals(usuario3));
 	}
-
 }

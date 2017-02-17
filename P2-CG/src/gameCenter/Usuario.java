@@ -1,12 +1,15 @@
 package gameCenter;
 
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class Usuario {
 	protected String nome;
 	protected String nomeLogin;
 	protected double dinheiro;
 	protected HashSet<Jogo> lista;
+	protected double desconto;
+	protected int x2p;
 	
 	public Usuario (String nome, String nomeLogin) throws Exception{
 		if (nome == null || nome.equals("")) {
@@ -19,6 +22,8 @@ public class Usuario {
 		this.nomeLogin = nomeLogin;
 		this.dinheiro = 0;
 		this.lista = new HashSet<Jogo>();
+		this.desconto = 10;
+		this.x2p = 0;
 	}
 
 	public void adicionarDinheiro(double money) throws Exception{
@@ -29,13 +34,27 @@ public class Usuario {
 	}
 	
 	public void comprarJogo(Jogo jogo) throws Exception{
-		if (jogo.getPreco() > dinheiro) {
+		double preco = jogo.getPreco() - (jogo.getPreco() * desconto) / 100;
+		if (preco > dinheiro) {
 			throw new Exception("Jogo muito caro");
 		}
-		dinheiro -= jogo.getPreco();
+		if (lista.contains(jogo)) {
+			throw new Exception("Você já possui esse jogo");
+		}
+		dinheiro -= preco;
 		lista.add(jogo);
 	}
-
+	
+	public void registraJogada(String nomeDoJogo, int score, boolean zerou) {
+		for (Iterator<Jogo> iterator = lista.iterator(); iterator.hasNext();) {
+			Jogo jogo = (Jogo) iterator.next();
+			if (nomeDoJogo.equals(jogo.getNome())) {
+				x2p += jogo.registraJogada(score, zerou);
+				break;
+			}
+		}
+	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -46,6 +65,10 @@ public class Usuario {
 
 	public double getDinheiro() {
 		return dinheiro;
+	}
+	
+	public int getX2p() {
+		return x2p;
 	}
 	
 	public HashSet<Jogo> getLista() {

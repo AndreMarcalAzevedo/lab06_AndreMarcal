@@ -1,0 +1,45 @@
+package gameCenterTestes;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import gameCenter.Usuario;
+
+public class UsuarioTeste {
+
+	private Usuario usuario;
+	
+	@Before
+	public void criaUsuario() throws Exception{
+		usuario = new Usuario("Paulo", "TheLegend27");
+	}
+	
+	@Test
+	public void testUsuario() {
+		assertEquals("Paulo", usuario.getNome());
+		assertEquals("TheLegend27", usuario.getNomeLogin());
+	}
+
+	@Test
+	public void testAdicionarDinheiro() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testComprarJogo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testToString() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testEqualsObject() {
+		fail("Not yet implemented");
+	}
+
+}

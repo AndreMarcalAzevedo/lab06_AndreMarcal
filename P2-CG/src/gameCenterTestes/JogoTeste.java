@@ -34,8 +34,11 @@ public class JogoTeste {
 	@Test
 	public void testJogo() {
 		assertEquals(50.00, jogo1.getPreco(),0.005);
+		assertEquals("DarkSiders", jogo1.getNome());
 		assertEquals(10.00, jogo2.getPreco(),0.005);
+		assertEquals("Mario", jogo2.getNome());
 		assertEquals(25.00, jogo3.getPreco(),0.005);
+		assertEquals("KoF", jogo3.getNome());
 	}
 
 	@Test
@@ -51,6 +54,16 @@ public class JogoTeste {
 		assertEquals(2, jogo1.getJogadas());
 		assertEquals(150, jogo1.getHighscore());
 		assertEquals(1, jogo1.getZeradas());
+		assertEquals(10, jogo1.registraJogada(150, true));
+		assertEquals(10, jogo1.registraJogada(0, false));
+		assertEquals(20, jogo2.registraJogada(150, true));
+		assertEquals(0, jogo2.registraJogada(250, false));
+		assertEquals(20, jogo3.registraJogada(20000, false));
+		jogo3.registraJogada(20000, false);
+		assertEquals(40, jogo3.registraJogada(40000, true));
+		jogo3.registraJogada(40000, true);
+		assertEquals(0, jogo3.registraJogada(30000, false));
+		jogo3.registraJogada(30000, false);
 	}
 
 	@Test

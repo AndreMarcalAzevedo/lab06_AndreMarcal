@@ -7,6 +7,19 @@ public class RPG extends Jogo{
 	public RPG(String nome, double preco, Set<EstilosJogo> estilos) throws Exception {
 		super(nome, preco, estilos);
 	}
+	
+	public int registraJogada(int score, boolean zerou){
+		jogadas++;
+		recompensa = 10;
+		if (score > highscore) {
+			highscore = score;
+		}
+		if (zerou == true) {
+			zeradas++;
+		}
+		return recompensa;
+	}
+	
 	@Override
 	public String toString(){
 		return nome + " " + preco + " RPG";	

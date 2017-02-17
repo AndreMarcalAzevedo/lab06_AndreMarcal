@@ -1,0 +1,80 @@
+package gameCenterTestes;
+
+import static org.junit.Assert.*;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import gameCenter.EstilosJogo;
+import gameCenter.Jogo;
+import gameCenter.Noob;
+import gameCenter.Usuario;
+import gameCenter.Veterano;
+
+public class UsuarioTeste {
+	
+	private Noob usuario1;
+	private Veterano usuario2;
+	private Jogo jogo;
+	private Set<EstilosJogo> estilos;
+	private HashSet<Jogo> lista;
+	
+	@Before
+	public void criaUsuario() throws Exception{
+		usuario1 = new Noob ("Edu", "BRKS");
+		usuario2 = new Veterano("Paulo", "TheLegend27");
+		jogo = new Jogo("Bastion", 20, estilos);
+	}
+	
+	@Test
+	public void testUsuario() {
+		assertEquals("Edu", usuario1.getNome());
+		assertEquals("BRKS", usuario1.getNomeLogin());
+		assertEquals("Paulo", usuario2.getNome());
+		assertEquals("TheLegend27", usuario2.getNomeLogin());
+	}
+
+	@Test
+	public void testAdicionarDinheiro() {
+		assertEquals(0, usuario1.getDinheiro(), 0.005);
+		try {
+			usuario1.adicionarDinheiro(10.50);
+		} catch (Exception e) {
+			
+		}
+		assertEquals(10.50, usuario1.getDinheiro(), 0.005);
+	}
+
+	@Test
+	public void testComprarJogo() throws Exception {
+		usuario1.adicionarDinheiro(20);
+		usuario2.adicionarDinheiro(20);
+		lista = new HashSet<Jogo>();
+		assertEquals(lista, usuario1.getLista());
+		usuario1.comprarJogo(jogo);
+		lista.add(jogo);
+		assertEquals(lista, usuario1.getLista());
+		assertEquals(2, usuario1.getDinheiro(), 0.005);
+		lista = new HashSet<Jogo>();
+		assertEquals(lista, usuario2.getLista());
+		usuario2.comprarJogo(jogo);
+		lista.add(jogo);
+		assertEquals(lista, usuario2.getLista());
+		assertEquals(4, usuario2.getDinheiro(), 0.005);
+	}
+
+	@Test
+	public void testToString() {
+		assertEquals("Edu BRKS", usuario1.toString());
+		assertEquals("Paulo TheLegend27", usuario2.toString());
+	}
+
+	@Test
+	public void testEqualsObject() {
+		fail("Not yet implemented");
+	}
+
+}

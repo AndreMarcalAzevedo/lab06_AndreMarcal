@@ -8,6 +8,19 @@ public class Plataforma extends Jogo{
 		super(nome, preco, estilos);
 	}
 	
+	public int registraJogada(int score, boolean zerou){
+		recompensa = 0;
+		jogadas++;
+		if (score > highscore) {
+			highscore = score;
+		}
+		if (zerou == true) {
+			zeradas++;
+			recompensa = 20;
+		}
+		return recompensa;
+	}
+	
 	@Override
 	public String toString(){
 		return nome + " " + preco + " Plataforma";

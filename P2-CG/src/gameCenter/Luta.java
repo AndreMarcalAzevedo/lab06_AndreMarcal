@@ -8,6 +8,19 @@ public class Luta extends Jogo{
 		super(nome, preco, estilos);
 	}
 	
+	public int registraJogada(int score, boolean zerou){
+		recompensa = 0;
+		jogadas++;
+		if (score > highscore) {
+			highscore = score;
+			recompensa = (score/1000);
+		}
+		if (zerou == true) {
+			zeradas++;
+		}
+		return recompensa;
+	}
+	
 	@Override
 	public String toString(){
 		return nome + " " + preco + " Luta";
